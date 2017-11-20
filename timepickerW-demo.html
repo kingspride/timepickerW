@@ -12,10 +12,15 @@
     </head>
     <body>
         <h1>timepickerW DEMO</h1>
-        <input type='time' value='00:00'>
+        <input type='time'>
         fdfklgjhdfgjkhsdjkfghioerhgjlsdhguorhtughskljghfkghkdhgsdjkghkjsdhgjklhfkjh
-        <input type='time' value='00:00'>
+        <input type='time'>
         <br>
-        <h4>Note: Currently doesnt support empty timefields. If a timefield is empty, please use "Clear" to generate a value of 00:00.</h4>
+        <h4>Note: If hiding divs with display: none, then timepickerW might get partially hidden aswell. use a CSS rule to get it back: </h4>
+        <pre>
+div.timepicker *{
+    display: block !important;
+    }
+        </pre>
     </body>
 </html>

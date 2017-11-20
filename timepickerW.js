@@ -12,8 +12,7 @@ function inittimepicker(){
                                     <div class='cursor minutes' onmousedown='decrease(this)'>&or;</div>\
                                 </div>\
                                 <br>\
-                                <button type='button' onclick='this.parentElement.previousElementSibling.value=\"00:00\"; readnumber(this.parentElement)'>clear</button>\
-                            </div>\
+                                <button type='button' onclick='this.parentElement.previousElementSibling.value=\"\"; readnumber(this.parentElement)'>clear</button>\
                             </div>";
     for(input of document.querySelectorAll('[type="time"]')){
         input.insertAdjacentHTML('afterend', timepickerHTML);
@@ -54,6 +53,9 @@ function hidepickers(){
 function increase(spinner){
     var number = spinner.nextElementSibling;
     var old = parseInt(number.innerHTML + old);
+    if(isNaN(old)){
+        old = 0;
+    }
     if(old == 59 && number.className.indexOf("minutes") > -1){
         number.innerHTML = "00";
     }else if(old == 23 && number.className.indexOf("hours") > -1){
@@ -71,6 +73,9 @@ function increase(spinner){
 function decrease(spinner){
     var number = spinner.previousElementSibling;
     var old = parseInt(number.innerHTML);
+    if(isNaN(old)){
+        old = 0;
+    }
     if(old == 0 && number.className.indexOf("minutes") > -1){
         number.innerHTML = "59";
     }else if(old == 0 && number.className.indexOf("hours") > -1){
@@ -89,6 +94,11 @@ function writenumber(timepicker){
     var input = timepicker.previousElementSibling;
     var minutes = timepicker.getElementsByClassName("minutes")[1].innerHTML;
     var hours = timepicker.getElementsByClassName("hours")[1].innerHTML;
+    if(hours == ""){
+        hours = "00";
+    }else if(minutes == ""){
+        minutes = "00";
+    }
     var value = hours + ":" + minutes;
     input.value = value;
 }
